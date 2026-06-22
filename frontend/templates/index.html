@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume & Portfolio Builder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ── NAV ──────────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-icon">✦</span> CareerAI
+    </a>
+    <div class="nav__links">
+      <a href="/resume"       class="nav__link">Resume</a>
+      <a href="/cover-letter" class="nav__link">Cover Letter</a>
+      <a href="/portfolio"    class="nav__link">Portfolio</a>
+    </div>
+    <button class="btn btn--outline" id="loginBtn">Sign In</button>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__badge">✦ Powered by Gemini AI</div>
+    <h1 class="hero__headline">
+      Your Career,<br />
+      <span class="hero__gradient">Crafted by AI.</span>
+    </h1>
+    <p class="hero__sub">
+      Generate ATS-optimised resumes, tailored cover letters, and stunning
+      portfolio pages in minutes — not hours.
+    </p>
+    <div class="hero__cta">
+      <a href="/resume" class="btn btn--primary btn--lg">Build My Resume →</a>
+      <a href="/portfolio" class="btn btn--ghost btn--lg">Create Portfolio</a>
+    </div>
+    <div class="hero__stats">
+      <div class="stat"><span class="stat__num">10k+</span><span class="stat__label">Resumes Generated</span></div>
+      <div class="stat__divider"></div>
+      <div class="stat"><span class="stat__num">94%</span><span class="stat__label">Interview Rate</span></div>
+      <div class="stat__divider"></div>
+      <div class="stat"><span class="stat__num">3 min</span><span class="stat__label">Average Build Time</span></div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ──────────────────────────────────────────────────────── -->
+  <section class="features" id="features">
+    <div class="features__header">
+      <p class="eyebrow">What We Build</p>
+      <h2 class="section__title">Three tools. One career edge.</h2>
+    </div>
+    <div class="features__grid">
+      <a href="/resume" class="feature-card">
+        <div class="feature-card__icon">📄</div>
+        <h3 class="feature-card__title">AI Resume</h3>
+        <p class="feature-card__desc">
+          Paste your experience in plain text. Gemini structures it into a
+          polished, keyword-rich resume and exports a pixel-perfect PDF.
+        </p>
+        <span class="feature-card__cta">Get started →</span>
+      </a>
+      <a href="/cover-letter" class="feature-card feature-card--accent">
+        <div class="feature-card__icon">✉️</div>
+        <h3 class="feature-card__title">Cover Letter</h3>
+        <p class="feature-card__desc">
+          Paste the job description and let AI write a targeted, compelling
+          letter that mirrors the role's language and tone.
+        </p>
+        <span class="feature-card__cta">Generate now →</span>
+      </a>
+      <a href="/portfolio" class="feature-card">
+        <div class="feature-card__icon">🌐</div>
+        <h3 class="feature-card__title">Portfolio Page</h3>
+        <p class="feature-card__desc">
+          Showcase your projects and skills in a clean, shareable portfolio
+          page built in seconds from your profile data.
+        </p>
+        <span class="feature-card__cta">Build portfolio →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ──────────────────────────────────────────────────── -->
+  <section class="how">
+    <p class="eyebrow">Process</p>
+    <h2 class="section__title">From blank to brilliant in three steps</h2>
+    <div class="how__steps">
+      <div class="how__step">
+        <div class="how__step-num">01</div>
+        <h4>Describe yourself</h4>
+        <p>Fill in the form or paste raw text about your background.</p>
+      </div>
+      <div class="how__connector">→</div>
+      <div class="how__step">
+        <div class="how__step-num">02</div>
+        <h4>AI does the writing</h4>
+        <p>Gemini structures, polishes, and optimises your content instantly.</p>
+      </div>
+      <div class="how__connector">→</div>
+      <div class="how__step">
+        <div class="how__step-num">03</div>
+        <h4>Download & apply</h4>
+        <p>Export a PDF resume and cover letter, or share your portfolio link.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <span class="nav__logo">✦ CareerAI</span>
+    <p class="footer__copy">© 2025 CareerAI · Built with Flask & Gemini</p>
+  </footer>
+
+  <!-- ── AUTH MODAL ────────────────────────────────────────────────────── -->
+  <div class="modal" id="authModal">
+    <div class="modal__box">
+      <button class="modal__close" id="closeModal">✕</button>
+      <h2 class="modal__title">Welcome back</h2>
+      <p class="modal__sub">Sign in to save and manage your documents.</p>
+
+      <div id="firebaseui-auth-container">
+        <button id="googleSignInBtn"
+          style="
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background:#4f46e5;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:20px;">
+        Continue with Google
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  
+  <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Builder · CareerAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/builder.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav__logo"><span class="nav__logo-icon">✦</span> CareerAI</a>
+    <div class="nav__links">
+      <a href="/resume"       class="nav__link nav__link--active">Resume</a>
+      <a href="/cover-letter" class="nav__link">Cover Letter</a>
+      <a href="/portfolio"    class="nav__link">Portfolio</a>
+    </div>
+    <button class="btn btn--outline" id="loginBtn">Sign In</button>
+  </nav>
+
+  <div class="builder">
+    <!-- ── LEFT: FORM ──────────────────────────────────────────────────── -->
+    <aside class="builder__form">
+      <div class="builder__form-header">
+        <h1 class="builder__title">Resume Builder</h1>
+        <p class="builder__sub">Describe your experience and let AI do the rest.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab tab--active" data-tab="quick">Quick</button>
+        <button class="tab"            data-tab="detailed">Detailed</button>
+      </div>
+
+      <!-- Quick Mode -->
+      <div class="tab-content" id="tab-quick">
+        <div class="form-group">
+          <label class="form-label">Paste your raw experience / LinkedIn bio / anything</label>
+          <textarea class="form-textarea" id="rawInput" rows="10"
+            placeholder="e.g. I'm [Your Name], a [Your Title] with [X years] of experience in [Your Field]...
+            Write about your skills,frameworks and tools you know.
+            Include your education,cgpa,projects ,certifications,internships if any.
+
+            Write anything you want to include in your resume and AI will help you format it.">
+          </textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" id="name" type="text" placeholder="Jane Doe" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Job Title</label>
+            <input class="form-input" id="title" type="text" placeholder="Software Engineer" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" id="email" type="email" placeholder="jane@example.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input class="form-input" id="phone" type="tel" placeholder="+1 555 000 0000" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Mode -->
+      <div class="tab-content hidden" id="tab-detailed">
+        <div class="form-group">
+          <label class="form-label">Professional Summary</label>
+          <textarea class="form-textarea" id="summary" rows="3"
+            placeholder="Brief 2–3 sentence career summary..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Skills (comma-separated)</label>
+          <input class="form-input" id="skills" type="text"
+            placeholder="Python, Flask, React, Docker, SQL..." />
+        </div>
+        <div id="experienceList">
+          <div class="section-label">
+            Experience
+            <button class="btn-add" id="addExp">+ Add</button>
+          </div>
+          <div class="exp-entry form-group">
+            <input class="form-input" placeholder="Role @ Company" data-field="role" />
+            <input class="form-input" placeholder="Duration (e.g. Jan 2022 – Present)" data-field="duration" />
+            <textarea class="form-textarea" rows="3" placeholder="Key achievements (one per line)" data-field="bullets"></textarea>
+          </div>
+        </div>
+
+
+        <div id="educationList">
+          <div class="section-label">
+            Education
+            <button class="btn-add" id="addEdu">+ Add</button>
+          </div>
+
+          <div class="edu-entry form-group">
+            <input class="form-input"
+                  placeholder="Degree"
+                  data-field="degree">
+
+            <input class="form-input"
+                  placeholder="Institution"
+                  data-field="institution">
+
+            <input class="form-input"
+                  placeholder="Duration (e.g., 2023-2027)"
+                  data-field="duration">
+
+            <input class="form-input"
+                  placeholder="GPA (optional)"
+                  data-field="gpa">
+          </div>
+        </div>
+
+        <div id="projectList">
+          <div class="section-label">
+            Projects
+            <button class="btn-add" id="addProject">+ Add</button>
+          </div>
+
+          <div class="project-entry form-group">
+            <input class="form-input"
+                  placeholder="Project Name"
+                  data-field="name">
+
+            <textarea class="form-textarea"
+                      rows="3"
+                      placeholder="Description"
+                      data-field="description"></textarea>
+
+            <input class="form-input"
+                  placeholder="Tech stack (comma separated)"
+                  data-field="tech">
+          </div>
+        </div>
+
+
+
+        <div id="certList">
+          <div class="section-label">
+            Certifications
+            <button class="btn-add" id="addCert">+ Add</button>
+          </div>
+
+          <div class="cert-entry form-group">
+            <input class="form-input"
+                  placeholder="Certification Name"
+                  data-field="name">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="builder__actions">
+        <button class="btn btn--primary btn--full" id="generateBtn">
+          <span class="btn__icon">✦</span> Generate with AI
+        </button>
+        <button class="btn btn--ghost btn--full hidden" id="downloadBtn">
+          ⬇ Download PDF
+        </button>
+      </div>
+
+      <div class="builder__status hidden" id="statusBox">
+        <div class="spinner"></div>
+        <span id="statusText">Generating your resume…</span>
+      </div>
+    </aside>
+
+    <!-- ── RIGHT: PREVIEW ──────────────────────────────────────────────── -->
+    <main class="builder__preview">
+      <div class="preview-placeholder" id="previewPlaceholder">
+        <div class="preview-placeholder__icon">📄</div>
+        <p>Your resume preview will appear here after generation.</p>
+      </div>
+      <div class="resume-preview hidden" id="resumePreview">
+        <!-- Populated by JS -->
+      </div>
+    </main>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+
+  <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/resume.js') }}"></script>
+</body>
+</html>

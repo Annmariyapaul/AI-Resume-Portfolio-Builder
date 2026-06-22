@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Builder · CareerAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/builder.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav__logo"><span class="nav__logo-icon">✦</span> CareerAI</a>
+    <div class="nav__links">
+      <a href="/resume"       class="nav__link">Resume</a>
+      <a href="/cover-letter" class="nav__link">Cover Letter</a>
+      <a href="/portfolio"    class="nav__link nav__link--active">Portfolio</a>
+    </div>
+    <button class="btn btn--outline" id="loginBtn">Sign In</button>
+  </nav>
+
+  <div class="builder">
+    <aside class="builder__form">
+      <div class="builder__form-header">
+        <h1 class="builder__title">Portfolio Builder</h1>
+        <p class="builder__sub">Showcase your work with an AI-enhanced profile.</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" id="name" placeholder="Jane Doe" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Title / Role</label>
+          <input class="form-input" id="title" placeholder="Full-Stack Developer" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">About / Bio (raw — AI will polish this)</label>
+        <textarea class="form-textarea" id="bio" rows="4"
+          placeholder="I'm a developer who loves building things…"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Skills (comma-separated)</label>
+        <input class="form-input" id="skills" placeholder="React, Node.js, Python, Figma…" />
+      </div>
+
+      <!-- Projects -->
+      <div class="section-label">
+        Projects
+        <button class="btn-add" id="addProject">+ Add Project</button>
+      </div>
+      <div id="projectsList">
+        <div class="project-entry">
+          <input class="form-input" placeholder="Project name" data-field="name" />
+          <input class="form-input" placeholder="Short description" data-field="description" />
+          <input class="form-input" placeholder="GitHub / Live URL" data-field="link" />
+          <input class="form-input" placeholder="Tech stack (comma-separated)" data-field="tech" />
+        </div>
+      </div>
+
+      <!-- Social links -->
+      <div class="section-label">Social Links</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">GitHub</label>
+          <input class="form-input" id="github" placeholder="https://github.com/you" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">LinkedIn</label>
+          <input class="form-input" id="linkedin" placeholder="https://linkedin.com/in/you" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email for contact</label>
+        <input class="form-input" id="email" type="email" placeholder="jane@example.com" />
+      </div>
+
+      <div class="builder__actions">
+        <button class="btn btn--primary btn--full" id="generateBtn">
+          <span class="btn__icon">✦</span> Generate Portfolio
+        </button>
+        <button class="btn btn--ghost btn--full hidden" id="copyLinkBtn">
+          🔗 Copy Share Link
+        </button>
+      </div>
+
+      <div class="builder__status hidden" id="statusBox">
+        <div class="spinner"></div>
+        <span id="statusText">Building your portfolio…</span>
+      </div>
+    </aside>
+
+    <main class="builder__preview">
+      <div class="preview-placeholder" id="previewPlaceholder">
+        <div class="preview-placeholder__icon">🌐</div>
+        <p>Your portfolio preview will appear here.</p>
+      </div>
+      <div class="portfolio-preview hidden" id="portfolioPreview">
+        <!-- Populated by JS -->
+      </div>
+    </main>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+
+
+  <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cover Letter · CareerAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/builder.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav__logo"><span class="nav__logo-icon">✦</span> CareerAI</a>
+    <div class="nav__links">
+      <a href="/resume"       class="nav__link">Resume</a>
+      <a href="/cover-letter" class="nav__link nav__link--active">Cover Letter</a>
+      <a href="/portfolio"    class="nav__link">Portfolio</a>
+    </div>
+    <button class="btn btn--outline" id="loginBtn">Sign In</button>
+  </nav>
+
+  <div class="builder">
+    <aside class="builder__form">
+      <div class="builder__form-header">
+        <h1 class="builder__title">Cover Letter</h1>
+        <p class="builder__sub">Tailored to the job description in seconds.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input class="form-input" id="name" type="text" placeholder="Jane Doe" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" id="email" type="email" placeholder="jane@example.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input class="form-input" id="phone" type="tel" placeholder="+1 555 000 0000" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Job Title Applying For</label>
+          <input class="form-input" id="jobTitle" type="text" placeholder="Senior Developer" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company Name</label>
+          <input class="form-input" id="company" type="text" placeholder="Acme Corp" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Hiring Manager (optional)</label>
+        <input class="form-input" id="recipientName" type="text" placeholder="Alex Johnson" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Job Description (paste here)</label>
+        <textarea class="form-textarea" id="jobDescription" rows="7"
+          placeholder="Paste the full job description here for best results…"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Brief resume summary (optional)</label>
+        <textarea class="form-textarea" id="resumeSummary" rows="3"
+          placeholder="5+ years in backend engineering, Python, cloud infra…"></textarea>
+      </div>
+
+      <div class="builder__actions">
+        <button class="btn btn--primary btn--full" id="generateBtn">
+          <span class="btn__icon">✦</span> Generate Cover Letter
+        </button>
+        <button class="btn btn--ghost btn--full hidden" id="downloadBtn">
+          ⬇ Download PDF
+        </button>
+      </div>
+
+      <div class="builder__status hidden" id="statusBox">
+        <div class="spinner"></div>
+        <span id="statusText">Writing your cover letter…</span>
+      </div>
+    </aside>
+
+    <main class="builder__preview">
+      <div class="preview-placeholder" id="previewPlaceholder">
+        <div class="preview-placeholder__icon">✉️</div>
+        <p>Your cover letter will appear here after generation.</p>
+      </div>
+      <div class="cover-preview hidden" id="coverPreview">
+        <!-- Populated by JS -->
+      </div>
+    </main>
+  </div>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+
+
+  <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/coverletter.js') }}"></script>
+</body>
+</html>

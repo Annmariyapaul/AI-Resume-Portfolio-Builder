@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+
+# Environment
+.env
+
+# Firebase credentials (NEVER commit)
+credentials/firebase-key.json
+database/firebase-service-account.json
+database/*.json
+
+# Generated PDFs
+generated_files/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

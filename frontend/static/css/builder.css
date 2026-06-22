@@ -1,0 +1,128 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   builder.css — Shared styles for resume / cover / portfolio builder pages
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+.builder{
+  display:grid;
+  grid-template-columns:420px 1fr;
+  min-height:calc(100vh - 64px);
+}
+
+/* ── Form panel ──────────────────────────────────────────────────────────── */
+.builder__form{
+  padding:2rem 1.8rem;
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+  background:var(--surface);
+  display:flex;flex-direction:column;gap:1rem;
+}
+.builder__form-header{margin-bottom:.5rem;}
+.builder__title{font-family:var(--font-disp);font-size:1.6rem;color:var(--ink);}
+.builder__sub{font-size:.88rem;color:var(--text-2);margin-top:.3rem;}
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+.tabs{display:flex;gap:.5rem;padding:.3rem;background:var(--surface-2);border-radius:var(--radius);width:fit-content;}
+.tab{
+  padding:.4rem 1rem;border-radius:calc(var(--radius) - 2px);
+  font-size:.85rem;font-weight:500;color:var(--text-2);
+  background:none;border:none;transition:all .2s;
+}
+.tab--active{background:var(--surface);color:var(--accent);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.tab-content{display:flex;flex-direction:column;gap:.8rem;}
+
+/* ── Form elements ───────────────────────────────────────────────────────── */
+.form-group{display:flex;flex-direction:column;gap:.4rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.form-label{font-size:.8rem;font-weight:600;color:var(--text-2);}
+.form-input,.form-textarea{
+  padding:.6rem .85rem;border:1.5px solid var(--border);
+  border-radius:var(--radius);font-size:.9rem;font-family:var(--font-body);
+  color:var(--text);background:var(--surface);transition:border-color .2s;
+  outline:none;
+}
+.form-input:focus,.form-textarea:focus{border-color:var(--accent);}
+.form-textarea{resize:vertical;min-height:80px;}
+
+/* ── Section label + add button ──────────────────────────────────────────── */
+.section-label{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--text-2);margin-top:.5rem;
+}
+.btn-add{
+  background:none;border:none;color:var(--accent);font-size:.82rem;font-weight:600;
+  cursor:pointer;padding:.2rem .5rem;
+}
+.exp-entry,.project-entry{
+  display:flex;flex-direction:column;gap:.6rem;
+  padding:1rem;background:var(--surface-2);
+  border-radius:var(--radius);border:1px solid var(--border);margin-top:.5rem;
+}
+
+/* ── Actions ─────────────────────────────────────────────────────────────── */
+.builder__actions{display:flex;flex-direction:column;gap:.6rem;margin-top:auto;padding-top:1rem;}
+.builder__status{
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.85rem;color:var(--text-2);
+  background:var(--surface-2);padding:.8rem 1rem;
+  border-radius:var(--radius);
+}
+
+/* ── Preview panel ───────────────────────────────────────────────────────── */
+.builder__preview{
+  padding:2.5rem;overflow-y:auto;
+  background:var(--surface-2);
+  display:flex;align-items:flex-start;justify-content:center;
+}
+.preview-placeholder{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1rem;color:var(--grey);text-align:center;
+  min-height:400px;width:100%;
+}
+.preview-placeholder__icon{font-size:3.5rem;opacity:.4;}
+.preview-placeholder p{font-size:.95rem;}
+
+/* ── Resume Preview ──────────────────────────────────────────────────────── */
+.resume-preview,.cover-preview,.portfolio-preview{
+  background:var(--surface);
+  max-width:760px;width:100%;
+  padding:3rem;border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-md);
+  font-size:.92rem;line-height:1.7;color:var(--text);
+}
+.resume-preview h1{font-family:var(--font-disp);font-size:1.8rem;color:var(--ink);margin-bottom:.2rem;}
+.resume-preview .rp-title{color:var(--accent);font-weight:600;margin-bottom:.3rem;}
+.resume-preview .rp-contact{font-size:.82rem;color:var(--grey);margin-bottom:1.2rem;}
+.resume-preview hr{border:none;border-top:1.5px solid var(--accent);opacity:.3;margin:.8rem 0;}
+.resume-preview h2{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
+.resume-preview .rp-job-title{font-weight:700;color:var(--ink);}
+.resume-preview .rp-job-meta{font-size:.82rem;color:var(--grey);margin-bottom:.4rem;}
+.resume-preview ul{padding-left:1.2rem;margin-bottom:.8rem;}
+.resume-preview li{margin-bottom:.25rem;font-size:.88rem;}
+.resume-preview .rp-section{margin-bottom:1.2rem;}
+.resume-preview .rp-skill-group{font-size:.88rem;margin-bottom:.3rem;}
+
+/* Cover letter preview */
+.cover-preview p{margin-bottom:.9rem;}
+.cover-preview .cl-sender{margin-bottom:1.5rem;}
+.cover-preview .cl-sender strong{font-size:1.1rem;}
+
+/* Portfolio preview */
+.portfolio-preview .pp-header{text-align:center;margin-bottom:2rem;}
+.portfolio-preview .pp-header h1{font-family:var(--font-disp);font-size:2rem;color:var(--ink);}
+.portfolio-preview .pp-bio{max-width:600px;margin:0 auto 2rem;text-align:center;color:var(--text-2);}
+.portfolio-preview .pp-section-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.portfolio-preview .pp-skills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+.portfolio-preview .pp-skill{background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:.25rem .75rem;font-size:.82rem;}
+.portfolio-preview .pp-projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.portfolio-preview .pp-project-card{border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;}
+.portfolio-preview .pp-project-card h4{font-weight:700;margin-bottom:.3rem;}
+.portfolio-preview .pp-project-card p{font-size:.85rem;color:var(--text-2);}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media(max-width:900px){
+  .builder{grid-template-columns:1fr;grid-template-rows:auto 1fr;}
+  .builder__form{border-right:none;border-bottom:1px solid var(--border);}
+  .form-row{grid-template-columns:1fr;}
+}
