@@ -111,7 +111,7 @@ Edit `.env` with your values:
 |----------|-------------|
 | `SECRET_KEY` | Flask secret key (any random string) |
 | `GEMINI_API_KEY` | From [Google AI Studio](https://aistudio.google.com/app/apikey) |
-| `GEMINI_MODEL` | `gemini-1.5-flash` (default) or `gemini-1.5-pro` |
+| `GEMINI_MODEL` | `gemini-2.5-flash` (default) or `gemini-2.5-pro` |
 | `FIREBASE_CREDENTIALS_PATH` | Path to service account JSON |
 | `FLASK_ENV` | `development` or `production` |
 
@@ -184,7 +184,7 @@ Browser ──► Flask (app.py)
 |-------|-----------|
 | Frontend | HTML5, CSS3, Vanilla JavaScript |
 | Backend | Python 3.11+, Flask 3.0 |
-| AI | Google Gemini 1.5 Flash/Pro |
+| AI | Google Gemini 2.5 Flash/Pro |
 | Database | Firebase Firestore |
 | Auth | Firebase Authentication (Google) |
 | PDF | ReportLab 4.x |
