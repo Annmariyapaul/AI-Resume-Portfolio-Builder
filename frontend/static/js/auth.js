@@ -5,12 +5,12 @@
 
 // ── Config (replace with your Firebase project values) ──────────────────────
 const firebaseConfig = {
-  apiKey:            "AIzaSyBy0SazbcXi4VusJ0PTH4TAsM5YM5aNeaE",
-  authDomain:        "careerai-686ef.firebaseapp.com",
-  projectId:         "careerai-686ef",
-  storageBucket:     "careerai-686ef.firebasestorage.app",
-  messagingSenderId: "692512817732",
-  appId:             "1:692512817732:web:72d317ae6dabe61786f211",
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        ".............",
+  projectId:         "...........",
+  storageBucket:     ".....................",
+  messagingSenderId: ".............",
+  appId:             "......................",
 };
 
 // ── Init (guarded — Firebase script must load before this) ───────────────────
